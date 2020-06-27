@@ -2,6 +2,7 @@
 
 """
 
+
 class Table:
     """A class used to store information regarding a certain table"""
 
