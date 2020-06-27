@@ -304,25 +304,10 @@ class TestProgram(unittest.TestProgram):
     class for command line parameters.
     """
 
-    def CreateGenerator(self):
-        """
-        Creates a generator instance which we will then parse to our testrunner
-        Return it so we can use it to edit said settings
-        """
-        self.generator = Generator()
-        return self.generator
-
     def RunTests(self):
         # Pick TestRunner as the default test runner.
         # base class's testRunner parameter is not useful because it means
         # we have to instantiate TestRunner before we know self.verbosity.
         if self.testRunner is None:
-            if self.generator:  # I.E its a custom generator
-                if isinstance(self.generator, Generator):  # Make sure its correct type
-                    self.testRunner = TestRunner(generator=self.generator)
-                    print("Gen")
-            else:
-                self.testRunner = TestRunner()
-                print("no gen")
-        print("Running tests")
+            self.testRunner = TestRunner()
         unittest.TestProgram.runTests(self)
