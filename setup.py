@@ -5,7 +5,7 @@ setup(
     packages=["autotesttables"],
     version="0.1",
     license="MIT",
-    description="TYPE YOUR DESCRIPTION HERE",  # Give a short description about your library
+    description="AutoTestTables is Python package made to further automate testing, by automatically generating test tables.",  # Give a short description about your library
     author="Ethan",
     author_email="skelmis.craft@gmail.com",  # Type in your E-Mail
     url="https://github.com/user/reponame",  # Provide either the link to your github or to your website
