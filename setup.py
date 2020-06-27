@@ -7,13 +7,13 @@ setup(
     license="MIT",
     description="AutoTestTables is Python package made to further automate testing, by automatically generating test tables.",  # Give a short description about your library
     author="Ethan",
-    author_email="skelmis.craft@gmail.com",  # Type in your E-Mail
-    url="https://github.com/user/reponame",  # Provide either the link to your github or to your website
-    download_url="https://github.com/user/reponame/archive/v_01.tar.gz",  # I explain this later on
+    author_email="skelmis.craft@gmail.com",
+    url="https://github.com/Skelmis/autotesttables",
+    download_url="https://github.com/Skelmis/autotesttables/archive/V0.1.tar.gz",
     keywords=[
-        "SOME",
-        "MEANINGFULL",
-        "KEYWORDS",
+        "Automated test tables",
+        "testing",
+        "unittest",
     ],  # Keywords that define your package best
     install_requires=["xlsxwriter",],
     classifiers=[
