@@ -16,4 +16,3 @@ script:
 # Os's to test on
 os:
   - linux
-  - osx
