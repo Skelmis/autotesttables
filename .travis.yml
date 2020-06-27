@@ -2,6 +2,7 @@ language: python
 
 # Python versions to test
 python:
+  - "3.6"
   - "3.7"
   - "3.8"
 
