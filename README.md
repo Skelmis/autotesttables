@@ -36,7 +36,18 @@ $ pip install autotesttables
 
 ### Usage
 
-TODO
+The simplest implementation of this works with all of the defaults and can be called with two lines.
+Create a new file in the directory of your tests and put the following, this will use the defaults and print output to stdout.
+```python
+from autotesttables import TestProgram
+
+TestProgram(module=None)
+```
+
+For a more comprehensive usage where we wish to change some values we will use `TestProgram` to create Generator instance and change the relevant settings. This example shows how to change the program to save to a excel document with the default name
+```python
+This feature is still a work in progress
+```
 
 ----
 
