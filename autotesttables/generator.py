@@ -19,6 +19,7 @@ class Generator:
         failureCount=0,
         errorCount=0,
         mode="print",
+        filename="Test Tables",
     ):
         """
         self.tables is a dict of all Table instances where table.title is the key
@@ -30,7 +31,9 @@ class Generator:
         self.success_count = successCount
         self.failure_count = failureCount
         self.error_count = errorCount
+
         self.mode = mode
+        self.filename = filename
 
     # <-- Class Methods -->
     def SetReportTitle(self, title):
@@ -102,6 +105,12 @@ class Generator:
 
         self.mode = mode.lower()
 
+    def SetFilename(self, filename):
+        """
+        Sets the filename for saving
+        """
+        self.filename = filename
+
     def GetReportTitle(self):
         """
         Returns this instances report title
@@ -137,6 +146,12 @@ class Generator:
         Returns this instances current mode
         """
         return self.mode
+
+    def GetFilename(self):
+        """
+        Returns this instances current filename for excel sheets
+        """
+        return self.filename
 
     def AddTable(self, table):
         """
@@ -256,7 +271,7 @@ class Generator:
 
         workbook.close()
 
-    def Build(self, filename="Test Tables"):
+    def Build(self):
         """
         Essentially generates the tables for every currently stored test
 
@@ -264,7 +279,7 @@ class Generator:
          - filename (str) : If mode is save this is needed
         """
         if self.mode.lower() == "save":
-            self.BuildTablesToExcel(filename)
+            self.BuildTablesToExcel(self.filename)
         else:
             count = 0
             for key in self.tables.keys():

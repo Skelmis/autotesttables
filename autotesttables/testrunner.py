@@ -9,8 +9,10 @@ try:
 except ImportError:
     from io import StringIO  # Py 3
 
-from table import Table
-from generator import Generator
+from autotesttables import Generator, Table
+
+# from table import Table
+# from generator import Generator
 
 """
 I did not build the base test runner myself, I simply used someone else's
@@ -146,14 +148,11 @@ class _TestResult(TestResult):
 
 
 class TestRunner:
-    """
-    """
-
-    def __init__(self, stream=sys.stdout, verbosity=1):
+    def __init__(self, stream=sys.stdout, verbosity=1, generator=Generator()):
         self.stream = stream
         self.verbosity = verbosity
 
-        self.generator = Generator()
+        self.generator = generator
 
     def run(self, test):
         "Run the given test case or test suite."
@@ -183,6 +182,11 @@ class TestRunner:
         # Make Table instances for all of our tests
         for tupleIndex in range(len(sortedTests)):
             for testIndex in range(len(sortedTests[tupleIndex][1])):
+                # initialize variables
+                testTitle = (
+                    docString
+                ) = inputDoc = outputDoc = testStatus = testStack = ""
+
                 curTest = sortedTests[tupleIndex][1][testIndex]
                 curTestObject = curTest[1]
 
@@ -258,11 +262,6 @@ class TestRunner:
                 # Add it into our generator
                 self.generator.AddTable(currentTable)
 
-                # Reset the variables
-                testTitle = (
-                    docString
-                ) = inputDoc = outputDoc = testStatus = testStack = ""
-
         # All tests are now in the generator so make the test tables
         self.generator.Build()
 
@@ -305,20 +304,25 @@ class TestProgram(unittest.TestProgram):
     class for command line parameters.
     """
 
-    def runTests(self):
+    def CreateGenerator(self):
+        """
+        Creates a generator instance which we will then parse to our testrunner
+        Return it so we can use it to edit said settings
+        """
+        self.generator = Generator()
+        return self.generator
+
+    def RunTests(self):
         # Pick TestRunner as the default test runner.
         # base class's testRunner parameter is not useful because it means
         # we have to instantiate TestRunner before we know self.verbosity.
         if self.testRunner is None:
-            self.testRunner = TestRunner()
+            if self.generator:  # I.E its a custom generator
+                if isinstance(self.generator, Generator):  # Make sure its correct type
+                    self.testRunner = TestRunner(generator=self.generator)
+                    print("Gen")
+            else:
+                self.testRunner = TestRunner()
+                print("no gen")
+        print("Running tests")
         unittest.TestProgram.runTests(self)
-
-
-main = TestProgram
-
-##############################################################################
-# Executing this module from the command line
-##############################################################################
-
-if __name__ == "__main__":
-    main(module=None)

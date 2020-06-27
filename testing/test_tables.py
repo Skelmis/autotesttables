@@ -11,7 +11,7 @@ class TestTables(unittest.TestCase):
     Test the functionality of the Table class
     """
 
-    def test_init(self):
+    def test_tableInit(self):
         """
         Tests the __init__ values for the Table class
         """

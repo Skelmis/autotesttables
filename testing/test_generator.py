@@ -11,7 +11,7 @@ class TestGenerator(unittest.TestCase):
     A class used to test the Generator methods
     """
 
-    def test_init(self):
+    def test_generatorInit(self):
         """
         Test __init__ values
         """
@@ -132,6 +132,17 @@ class TestGenerator(unittest.TestCase):
         with self.assertRaises(ValueError):
             cur.SetErrorCount("test")
         self.assertEqual(cur.GetErrorCount(), 0)
+
+    def test_filename(self):
+        """
+        Test the methods handling filenames
+
+        Input:
+        SetFilename() & GetFilename()
+        """
+        cur = Generator()
+        cur.SetFilename("test")
+        self.assertEqual(cur.GetFilename(), "test")
 
     def test_addTable(self):
         """
