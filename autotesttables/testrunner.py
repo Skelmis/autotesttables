@@ -148,11 +148,11 @@ class _TestResult(TestResult):
 
 
 class TestRunner:
-    def __init__(self, stream=sys.stdout, verbosity=1, generator=Generator()):
+    def __init__(self, stream=sys.stdout, verbosity=1):
         self.stream = stream
         self.verbosity = verbosity
 
-        self.generator = generator
+        self.generator = Generator()
 
     def run(self, test):
         "Run the given test case or test suite."

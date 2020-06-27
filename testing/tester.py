@@ -6,4 +6,5 @@ import sys
 sys.path.insert(0, "..")
 from autotesttables import TestProgram
 
-TestProgram(module=None)
+if __name__ == "__main__":
+    TestProgram(module=None)

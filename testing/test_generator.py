@@ -133,6 +133,7 @@ class TestGenerator(unittest.TestCase):
             cur.SetErrorCount("test")
         self.assertEqual(cur.GetErrorCount(), 0)
 
+    @unittest.SkipTest
     def test_filename(self):
         """
         Test the methods handling filenames
