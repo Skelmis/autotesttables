@@ -1,5 +1,7 @@
 import xlsxwriter
 
+from autotesttables import Table
+
 
 class Generator:
     """
@@ -16,6 +18,7 @@ class Generator:
         successCount=0,
         failureCount=0,
         errorCount=0,
+        mode="print",
     ):
         """
         self.tables is a dict of all Table instances where table.title is the key
@@ -27,6 +30,7 @@ class Generator:
         self.success_count = successCount
         self.failure_count = failureCount
         self.error_count = errorCount
+        self.mode = mode
 
     # <-- Class Methods -->
     def SetReportTitle(self, title):
@@ -86,6 +90,18 @@ class Generator:
 
         self.error_count = count
 
+    def SetMode(self, mode):
+        """
+        Sets the current mode
+
+        Params:
+         - mode (print/save) : The mode for Build()
+        """
+        if not mode.lower() in ["print", "save"]:
+            raise Exception(f"Invalid mode: {mode}. Expected print or save")
+
+        self.mode = mode.lower()
+
     def GetReportTitle(self):
         """
         Returns this instances report title
@@ -116,6 +132,12 @@ class Generator:
         """
         return self.error_count
 
+    def GetMode(self):
+        """
+        Returns this instances current mode
+        """
+        return self.mode
+
     def AddTable(self, table):
         """
         Adds a new table to our instance list
@@ -123,6 +145,12 @@ class Generator:
         Params:
          - table (Table instance)
         """
+        if not isinstance(table, Table):
+            raise Exception("Expected Table instance")
+
+        if table.GetTitle() in self.tables:
+            raise KeyError(f"Table with title ({table.GetTitle()}) already exists")
+
         self.tables[table.GetTitle()] = table
 
     def GetTable(self, tableName):
@@ -228,15 +256,14 @@ class Generator:
 
         workbook.close()
 
-    def Build(self, mode="print", filename="Test Tables"):
+    def Build(self, filename="Test Tables"):
         """
         Essentially generates the tables for every currently stored test
 
         Optional Param:
-         - mode (str) : Will either print to stdout with `print` or
-                        save to excel file with `save` mode
+         - filename (str) : If mode is save this is needed
         """
-        if mode.lower() == "save":
+        if self.mode.lower() == "save":
             self.BuildTablesToExcel(filename)
         else:
             count = 0
