@@ -1,9 +1,5 @@
 import xlsxwriter
 
-"""
-
-"""
-
 
 class Generator:
     """
