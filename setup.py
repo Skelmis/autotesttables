@@ -1,11 +1,16 @@
 from distutils.core import setup
 
+with open("README.md", "r", encoding="utf-8") as fh:
+    long_description = fh.read()
+
 setup(
     name="autotesttables",
     packages=["autotesttables"],
     version="0.1",
     license="MIT",
     description="AutoTestTables is Python package made to further automate testing, by automatically generating test tables.",  # Give a short description about your library
+    long_description=long_description,
+    long_description_content_type="text/markdown",
     author="Ethan",
     author_email="skelmis.craft@gmail.com",
     url="https://github.com/Skelmis/autotesttables",

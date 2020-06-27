@@ -28,7 +28,8 @@ AutoTestTables requires [Python3+](https://www.python.org/) to run.
 > It has been tested on 3.7 & 3.8, other versions are unsupported.
 
 
-```sh
+```
+
 $ pip install autotesttables
 ```
 
@@ -38,7 +39,8 @@ $ pip install autotesttables
 
 The simplest implementation of this works with all of the defaults and can be called with two lines.
 Create a new file in the directory of your tests and put the following, this will use the defaults and print output to stdout.
-```python
+```
+
 from autotesttables import TestProgram
 
 if __name__ == "__main__":
