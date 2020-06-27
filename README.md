@@ -41,7 +41,9 @@ Create a new file in the directory of your tests and put the following, this wil
 ```python
 from autotesttables import TestProgram
 
-TestProgram(module=None)
+if __name__ == "__main__":
+    TestProgram(module=None)
+
 ```
 
 For a more comprehensive usage where we wish to change some values we will use `TestProgram` to create Generator instance and change the relevant settings. This example shows how to change the program to save to a excel document with the default name
