@@ -51,6 +51,10 @@ if __name__ == "__main__":
 For a more comprehensive usage where we wish to change some values we will use `TestProgram` to create Generator instance and change the relevant settings. This example shows how to change the program to save to a excel document with the default name
 ```python
 This feature is still a work in progress
+
+<https://github.com/Skelmis/autotesttables/blob/master/autotesttables/generator.py#L274>
+
+manipulate this to force output differently.
 ```
 
 ----
